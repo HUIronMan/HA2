@@ -8,6 +8,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{tikz}
 %\newcommand{\genasso}[2]{\begin{minipage}{0.7\textwidth}\begin{normalsize}\begin{flushleft}\textbf{{#1}}\end{flushleft}\end{normalsize}\vspace{-1cm}\begin{flushleft}\begin{small}{#2}\end{small}\end{flushleft}\end{minipage}\\\vspace{0.2cm}}
 \pagenumbering{arabic}
 
@@ -73,21 +74,62 @@
 %% Only modify below here  and change myTitle!!!!!!!!!!!!!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Aufgabe 1}
-\subsection{A-B}
+Aufgabe: \begin{minipage}{10cm}
+Was ist die Beziehung zwischen den verschiedenen Diagrammen? 
+Beinhaltet ein Diagramm ein anderes Diagramm, d.h. werden
+alle Abläufe, die von dem einem akzeptiert werden, gezwungenermaßen auch von dem anderem
+akzeptiert? Warum? Warum nicht?
+         \end{minipage}
 
-\subsection{A-C}
+\subsection*{A-B}
+Diagramm A ist in Diagramm B enthalten, weiterhin hat Actor A in Diagramm B direkten Zugang da ``Use Case 2''  ohne eventuelle Abh@ngigkeiten aus ``Use Case 1''. In Diagramm A ist die Verbindung nur indirekt vorhanden durch ``Use Case 1'', welcher möglicherweise zusätzliche Schritte beinhaltet.
 
-\subsection{A-D}
+\subsection*{A-C}
+Diagramm A ist in Diagramm C enthalten, weiterhin hat Actor A in Diagramm C die Möglichkeit die Rolle von Actor B zu übernehmen und wie in \textbf{A-B} direkt auf ``Use Case 2'' zuzugreifen.
 
-\subsection{B-C}
+\subsection*{A-D}
+Diagramm A ist in Diagramm D enthalten, weiterhin hat Actor A in Diagramm D die Möglichkeit direkt auf ``Use Case 2'' zuzugreifen und Actor B kann nun auch auf ``Use Case 1'' zugreifen.
 
-\subsection{B-D}
+\subsection*{B-C}
+Diagramm B und C sind equivalent, wobei sie sich jedoch in ihrer Implementierung unterscheiden können. Als Beispiel können Actor A und B Nutzergruppen in einen Computersystem darstellen. Bei Diagramm B würde beiden Gruppen direkter Zugang zu ``Use Case 2'' gewährt. In Diagramm C würde Actor B als Untergruppe zu Actor A eingeführt. Dies resultiert jedoch im gleichen Endergebnis. 
 
-\subsection{C-D}
+\subsection*{B-D}
+Diagramm B ist in Diagramm D enthalten, es gibt möglicherweise Implementierungsunterschiede wie in \textbf{B-C}. Weiterhin erhält Actor B in Diagramm D die Möglichkeit auf ``Use Case 1'' zuzugreifen.
+
+\subsection*{C-D}
+Diagramm C ist in Diagramm D enthalten, es gibt möglicherweise Implementierungsunterschiede wie in \textbf{B-C}. Weiterhin erhält Actor B in Diagramm D die Möglichkeit auf ``Use Case 1'' zuzugreifen.
 
 \newpage
 \section*{Aufgabe 2}
 
 
+%I don't really know how this is supposed to look like, jsut started doing ``something''
+\begin{tikzpicture}[node distance=4cm]
+	\node (0) at (0, 6) [state] {Page Visitor};
+	\node (1) at (0, 8) [state] {Hostel Visitor};
+	\node (a) at (0, 4) [state] {Reserved Guest};
+	\node (b) at (0, 2) [state] {Guest};
+	\node (c) at (0, 0) [state] {Canceled Guest};
+	\node (d) at (10, 4) [state] {Hostel Worker};
+	\node (e) at (5, 6) [state] {Fill reservation form};
+	\node (f) at (5, 4) [state] {CheckIn};
+	\node (g) at (5, 2) [state] {Cancel};
+	\node (h) at (9, 2) [state] {Make Call};
+	\node (i) at (9, 3) [state] {Send Mail};
+	\node (j) at (9, 1) [state] {Show 3 Pictures};
+	
+	
+	\path[->]
+		(0) edge[bend left] node[right] {If reservation made} (a)
+		(1) edge[bend right=50] node[left] {If reservation made} (a)
+		(1) edge[bend left] node[right] {Request reservation} (d)
+		(d) edge node[right] {Make reservation} (e)
+		(0) edge node[below] {Make reservation} (e)
+		%Keept as examples
+		(a) edge[bend left=50] node[above] {$3$} (f)
+		(f) edge node[right] {$4$} (g)
+		(g) edge node[above] {$5$} (h);
+		
+\end{tikzpicture}
 
 \end{document}
