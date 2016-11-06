@@ -9,6 +9,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage[final]{pdfpages}
 %\newcommand{\genasso}[2]{\begin{minipage}{0.7\textwidth}\begin{normalsize}\begin{flushleft}\textbf{{#1}}\end{flushleft}\end{normalsize}\vspace{-1cm}\begin{flushleft}\begin{small}{#2}\end{small}\end{flushleft}\end{minipage}\\\vspace{0.2cm}}
 \pagenumbering{arabic}
 
@@ -102,34 +103,37 @@ Diagramm C ist in Diagramm D enthalten, es gibt möglicherweise Implementierungs
 \newpage
 \section*{Aufgabe 2}
 
+%\includegraphics[width=6cm]{./Aufgabe2.png}
 
-%I don't really know how this is supposed to look like, jsut started doing ``something''
-\begin{tikzpicture}[node distance=4cm]
-	\node (0) at (0, 6) [state] {Page Visitor};
-	\node (1) at (0, 8) [state] {Hostel Visitor};
-	\node (a) at (0, 4) [state] {Reserved Guest};
-	\node (b) at (0, 2) [state] {Guest};
-	\node (c) at (0, 0) [state] {Canceled Guest};
-	\node (d) at (10, 4) [state] {Hostel Worker};
-	\node (e) at (5, 6) [state] {Fill reservation form};
-	\node (f) at (5, 4) [state] {CheckIn};
-	\node (g) at (5, 2) [state] {Cancel};
-	\node (h) at (9, 2) [state] {Make Call};
-	\node (i) at (9, 3) [state] {Send Mail};
-	\node (j) at (9, 1) [state] {Show 3 Pictures};
-	
-	
-	\path[->]
-		(0) edge[bend left] node[right] {If reservation made} (a)
-		(1) edge[bend right=50] node[left] {If reservation made} (a)
-		(1) edge[bend left] node[right] {Request reservation} (d)
-		(d) edge node[right] {Make reservation} (e)
-		(0) edge node[below] {Make reservation} (e)
-		%Keept as examples
-		(a) edge[bend left=50] node[above] {$3$} (f)
-		(f) edge node[right] {$4$} (g)
-		(g) edge node[above] {$5$} (h);
-		
-\end{tikzpicture}
+\includepdf[pages=-]{HA2_Aufgabe2.pdf}
+
+% %I don't really know how this is supposed to look like, jsut started doing ``something''
+% \begin{tikzpicture}[node distance=4cm]
+% 	\node (0) at (0, 6) [state] {Page Visitor};
+% 	\node (1) at (0, 8) [state] {Hostel Visitor};
+% 	\node (a) at (0, 4) [state] {Reserved Guest};
+% 	\node (b) at (0, 2) [state] {Guest};
+% 	\node (c) at (0, 0) [state] {Canceled Guest};
+% 	\node (d) at (10, 4) [state] {Hostel Worker};
+% 	\node (e) at (5, 6) [state] {Fill reservation form};
+% 	\node (f) at (5, 4) [state] {CheckIn};
+% 	\node (g) at (5, 2) [state] {Cancel};
+% 	\node (h) at (9, 2) [state] {Make Call};
+% 	\node (i) at (9, 3) [state] {Send Mail};
+% 	\node (j) at (9, 1) [state] {Show 3 Pictures};
+% 	
+% 	
+% 	\path[->]
+% 		(0) edge[bend left] node[right] {If reservation made} (a)
+% 		(1) edge[bend right=50] node[left] {If reservation made} (a)
+% 		(1) edge[bend left] node[right] {Request reservation} (d)
+% 		(d) edge node[right] {Make reservation} (e)
+% 		(0) edge node[below] {Make reservation} (e)
+% 		%Keept as examples
+% 		(a) edge[bend left=50] node[above] {$3$} (f)
+% 		(f) edge node[right] {$4$} (g)
+% 		(g) edge node[above] {$5$} (h);
+% 		
+% \end{tikzpicture}
 
 \end{document}
